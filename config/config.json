@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "postgres",
-    "password": "nothinglasts123",
+    "password": "h0meaway",
     "database": "socialapp",
     "host": "localhost",
     "dialect": "postgres"
