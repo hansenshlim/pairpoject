@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <%-include('../partials/head')%>
+        <title>Ngobrol App: Tagged Feeds</title>
+    </head>
+    <body>
+        <%-include('../partials/navbar')%>
+        
+        <div class="container">
+            <h1 class="mt-4 mb-4">Feeds tagged [<span class="font-weight-light"><%=tagName%></span>]</h1>
+            
+            <%-include('../partials/feedList')%>
+        </div>
+
+        <%-include('../partials/footer')%>
+    </body>
+</html>

@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "postgres",
-    "password": "nothinglasts123",
-    "database": "socialapp",
+    "password": "h0meaway",
+    "database": "pairprojectfinal",
     "host": "localhost",
     "dialect": "postgres"
   },

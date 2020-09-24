@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%-include('../partials/head')%>
+    <title>Ngobrol App: Edit Profile</title>
+</head>
+
+<body>
+    <%-include('../partials/navbar')%>
+    <div class="container shadow mt-3 bg-light">
+        <%-include('../partials/alert')%>
+        <h1 class="text-center">Edit Profile</h1>
+        
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-3">
+                <form action="/user/profile" method="post" enctype="multipart/form-data">
+                    <div class="text-center">
+                        <img src="../images/<%=user.profilPict%>" alt="avatar" class="img-thumbnail" style="width: 200px;height: 200px;max-width: 200px;max-height: 200px;">
+                        <h6>Upload a different photo...</h6>
+                        <input type="file" name="avatar" class="form-control">
+                        <button type="submit" class="btn btn-success btn-lg btn-block btn-sm mt-2">Upload Profile Picture</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- edit form column -->
+            <div class="col-md-9 personal-info">
+                <h3>Personal info</h3>
+
+                <form class="form-horizontal" role="form" method="post">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">First name:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" type="text" name="first_name" value="<%= user['first_name']%>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Last name:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" type="text" name="last_name" value="<%= user['last_name']%>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Email:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" type="text" name="email" value="<%= user['email']%>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Username:</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" name="username" value="<%= user['username']%>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Password</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="password" name="old_password" value="" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">New password:</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="password" name="new_password" value="" placeholder="let this one blank to keep old password">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-8">
+                            <button type="submit" class="btn btn-success btn-lg btn-block">Save Changes</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <%-include('../partials/footer')%>
+</body>
+
+</html>

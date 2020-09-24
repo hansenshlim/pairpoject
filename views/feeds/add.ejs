@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <%-include('../partials/head')%>
+    <title>Ngobrol App: Add New Post</title>
+</head>
+
+<body>
+    <%-include('../partials/navbar')%>
+
+    <div class="container">
+        <div class="card mt-5 shadow">
+            <div class="card-body">
+                <form method="post">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" name="title" id="title" placeholder="ini teh judul">
+                    </div>
+                    <div class="form-group">
+                        <label for="content">Feed</label>
+                        <textarea class="form-control" id="content" name="content" rows="5"
+                            placeholder="ketik apaan aja terserah gw ga peduli"></textarea>
+                    </div>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">#</span>
+                        </div>
+                        <input type="text" class="form-control"
+                            placeholder="tags separated by comma and no space allowed" aria-label="tagsName"
+                            name="tagsName" aria-describedby="basic-addon1" pattern="^\S+$" required>
+                    </div>
+                    <p class="text-muted ml-5">ex: saya,suka,makan,rendang</p>
+                    <div class="text-right mt-3">
+                        <a class="btn btn-outline-primary" href="/feeds" role="button">Back to Feeds</a>
+                        <button type="submit" class="btn btn-success">Post</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%-include('../partials/footer')%>
+</body>
+
+</html>

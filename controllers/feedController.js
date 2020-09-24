@@ -1,14 +1,14 @@
 'use strict'
 
 const fs = require('fs');
-const {Feed, Tag, FeedTags, User, LikeDislike} = require('../models');
+const { Feed, Tag, FeedTags, User, LikeDislike } = require('../models');
 
 class FeedController {
     static showFeed(req, res) {
         const fullName = req.session.fullName;
         const options = {
             include: [Tag, User],
-            order: [['createdAt','DESC']]
+            order: [['createdAt', 'DESC']]
         };
         let promiseOptions;
         let feedsWithTags;
@@ -17,7 +17,7 @@ class FeedController {
             .then((feeds) => {
                 feedsWithTags = feeds;
                 promiseOptions = {
-                    group: ['status','FeedId']
+                    group: ['status', 'FeedId']
                 };
                 return LikeDislike.count(promiseOptions);
             }).then((countRes) => {
@@ -32,7 +32,7 @@ class FeedController {
                 feedsWithTags.forEach(feed => {
                     let count = 0;
 
-                    feed.setTimeDiff((new Date() - new Date(feed.createdAt).getTime()) / (1000*60*60*24));
+                    feed.setTimeDiff((new Date() - new Date(feed.createdAt).getTime()) / (1000 * 60 * 60 * 24));
                     feed.setDataValue('like', '0 like');
                     feed.setDataValue('dislike', '0 dislike');
                     for (let i = 0; i < countLikeDislike.length; i++) {
@@ -57,7 +57,7 @@ class FeedController {
                     }
                 });
 
-                res.render('feeds/list', {feeds: feedsWithTags, fullName});
+                res.render('feeds/list', { feeds: feedsWithTags, fullName });
             }).catch((err) => {
                 res.send(err);
             });
@@ -79,7 +79,7 @@ class FeedController {
         Tag.findAll(options)
             .then((tags) => {
                 tags.forEach(tag => {
-                    tagsAdd.splice(tagsAdd.indexOf(tag.getDataValue('name')),1);
+                    tagsAdd.splice(tagsAdd.indexOf(tag.getDataValue('name')), 1);
                     tagsIdFound.push(tag.getDataValue('id'));
                 });
                 for (let i = 0; i < tagsAdd.length; i++) {
@@ -116,6 +116,17 @@ class FeedController {
             });
     }
 
+    static deleteFeed(req, res) {
+        Feed.destroy({
+            where: {
+                id: req.params.feedid
+            }
+        })
+            .then(() => res.redirect('/feeds'))
+            .catch(err => console.log(err))
+    }
+
+
     static showEditFeedForm(req, res) {
         const fullName = req.session.fullName;
         const options = {
@@ -125,7 +136,7 @@ class FeedController {
         Feed.findOne(options)
             .then((feed) => {
                 // res.send(feed);
-                res.render('feeds/edit', {feed, fullName});
+                res.render('feeds/edit', { feed, fullName });
             }).catch((err) => {
                 res.send(err);
             });
@@ -138,7 +149,7 @@ class FeedController {
         let options = {
             include: {
                 model: Feed,
-                order: [['createdAt','DESC']]
+                order: [['createdAt', 'DESC']]
             },
             where: {
                 name: tagName
@@ -166,7 +177,7 @@ class FeedController {
             }).then((feeds) => {
                 feedsWithTags = feeds;
                 promiseOptions = {
-                    group: ['status','FeedId']
+                    group: ['status', 'FeedId']
                 };
                 return LikeDislike.count(promiseOptions);
             }).then((countRes) => {
@@ -181,7 +192,7 @@ class FeedController {
                 feedsWithTags.forEach(feed => {
                     let count = 0;
 
-                    feed.setTimeDiff((new Date() - new Date(feed.createdAt).getTime()) / (1000*60*60*24));
+                    feed.setTimeDiff((new Date() - new Date(feed.createdAt).getTime()) / (1000 * 60 * 60 * 24));
                     feed.setDataValue('like', '0 like');
                     feed.setDataValue('dislike', '0 dislike');
                     for (let i = 0; i < countLikeDislike.length; i++) {
@@ -205,13 +216,13 @@ class FeedController {
                         }
                     }
                 });
-                res.render('feeds/tagged', {tagName, feeds: feedsWithTags, fullName});
+                res.render('feeds/tagged', { tagName, feeds: feedsWithTags, fullName });
             }).catch((err) => {
                 res.send(err);
             });
     }
 
-    static like(req, res){
+    static like(req, res) {
         const userId = req.session.userId
 
         const options = {
@@ -224,24 +235,24 @@ class FeedController {
             .then(data => {
                 if (!data) {
                     return LikeDislike.create({
-                        UserId: userId, 
+                        UserId: userId,
                         FeedId: Number(req.params.feedId),
                         status: 'like'
                     })
-                }else{
+                } else {
                     if (data['status'] === 'like') {
                         return LikeDislike.destroy({
                             where: {
-                                UserId: userId, 
+                                UserId: userId,
                                 FeedId: Number(req.params.feedId)
                             }
                         })
                     } else {
                         return LikeDislike.update({
                             status: 'like'
-                        },{
+                        }, {
                             where: {
-                                UserId: userId, 
+                                UserId: userId,
                                 FeedId: Number(req.params.feedId)
                             }
                         })
@@ -256,7 +267,7 @@ class FeedController {
             })
     }
 
-    static dislike(req, res){
+    static dislike(req, res) {
         const userId = req.session.userId
         const options = {
             where: {
@@ -268,24 +279,24 @@ class FeedController {
             .then(data => {
                 if (!data) {
                     return LikeDislike.create({
-                        UserId: userId, 
+                        UserId: userId,
                         FeedId: Number(req.params.feedId),
                         status: 'dislike'
                     })
-                }else{
+                } else {
                     if (data['status'] === 'dislike') {
                         return LikeDislike.destroy({
                             where: {
-                                UserId: userId, 
+                                UserId: userId,
                                 FeedId: Number(req.params.feedId)
                             }
                         })
-                    } else{
+                    } else {
                         return LikeDislike.update({
                             status: 'dislike'
-                        },{
+                        }, {
                             where: {
-                                UserId: userId, 
+                                UserId: userId,
                                 FeedId: Number(req.params.feedId)
                             }
                         })
