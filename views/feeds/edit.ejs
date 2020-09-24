@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <%-include('../partials/head')%>
+        <title>Ngobrol App: Edit Post</title>
+    </head>
+    <body>
+        <%-include('../partials/navbar')%>
+
+        <%=JSON.stringify(feed)%>
+        <form method="post">
+            TITLE: <input type="text" name="title" id="title" value="<%=feed.title%>"><br>
+            CONTENT: <input type="textara" name="content" id="content" value="<%=feed.content%>"><br>
+            TAG: <input type="tag" name="tagsName" id="tagsName"><br>
+            <button type="submit">Save</button>
+        </form>
+
+        <%-include('../partials/footer')%>
+    </body>
+</html>

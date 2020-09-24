@@ -1,0 +1,50 @@
+<table class="table bg-light">
+    <tbody>
+        <%feeds.forEach(feed => {%>
+        <tr>
+            <td style="width: 800px;max-width: 800px;">
+                <p style="font-size: 25px;">
+                    <a href="#"><%= feed['title'] %></a>
+                </p>
+                <span class="font-weight-light d-inline-block">
+                    <%= feed['content'] %>
+                </span>
+                <p>
+                    <%feed.Tags.forEach(tag => {%>
+                    <a class="btn btn-info btn-xs" href="/feeds/tagged/<%=tag.name%>" role="button"><%=tag.name%></a>
+                    <%});%>
+                </p>
+            </td>
+            <td style="min-width:100px;" class="text-right">
+                <a href="/otherpage/<%=(feed['UserId'])%>"><%=fullName%></a>
+                <a href="/feeds/delete/<%=feed.id%>"><button class="btn btn-outline-danger btn-sm">Delete</button></a>
+                <p class="font-weight-light text-muted">
+                    <%if (feed.getDataValue('timeDiff') == 0) {%>
+                    just now
+                    <%} else if (feed.getDataValue('timeDiff') < 1) {%>
+                    <%=feed.getDataValue('timeDiff')*10%> hours ago
+                    <%} else {%>
+                    <%=feed.getDataValue('timeDiff')%> days ago
+                    <%}%>
+                  </p>
+                  <%if (!feed.getDataValue('userResponse')) {%>
+                    <a class="btn btn-outline-success btn-sm" href="/feeds/like/<%=(feed.id)%>" role="button"
+                        data-toggle="tooltip" data-placement="top" title="<%=feed.getDataValue('like')%>">Like</a>
+                    <a class="btn btn-outline-danger btn-sm" href="/feeds/dislike/<%=(feed.id)%>" role="button"
+                        data-toggle="tooltip" data-placement="top" title="<%=feed.getDataValue('dislike')%>">Dislike</a>
+                    <%} else if (feed.getDataValue('userResponse') === 'like') {%>
+                    <a class="btn btn-success btn-sm" href="/feeds/like/<%=(feed.id)%>" role="button"
+                        data-toggle="tooltip" data-placement="top" title="<%=feed.getDataValue('like')%>">Like</a>
+                    <a class="btn btn-outline-danger btn-sm" href="/feeds/dislike/<%=(feed.id)%>" role="button"
+                        data-toggle="tooltip" data-placement="top" title="<%=feed.getDataValue('dislike')%>">Dislike</a>
+                    <%} else if (feed.getDataValue('userResponse') === 'dislike') {%>
+                    <a class="btn btn-outline-success btn-sm" href="/feeds/like/<%=(feed.id)%>" role="button"
+                        data-toggle="tooltip" data-placement="top" title="<%=feed.getDataValue('like')%>">Like</a>
+                    <a class="btn btn-danger btn-sm" href="/feeds/dislike/<%=(feed.id)%>" role="button"
+                        data-toggle="tooltip" data-placement="top" title="<%=feed.getDataValue('dislike')%>">Dislike</a>
+                    <%}%>
+              </td>
+          </tr>
+      <%});%>
+    </tbody>
+</table>

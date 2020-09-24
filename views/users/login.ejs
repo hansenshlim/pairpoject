@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<<<<<<< HEAD
+<head>
+    <%-include('../partials/head')%>
+    <title>Ngobrol App: Login</title>
+</head>
+<body>
+	<div class="container mt-5">
+		<%-include('../partials/alert')%>
+
+        <div class="row d-flex justify-content-center">
+  
+            <div class="col-md-4 shadow bg-light p-3">
+                <div class="signup-form mt-5">
+                    <h1 class="text-center mb-5">Ngobrol App</h1>
+                    <form method="post">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="username" placeholder="Username" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="password" placeholder="Password" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-lg btn-block">Login</button>
+                        </div>
+                    </form>
+                    <div class="text-center">Dont have any account? <a href="/user/register">Register</a></div>
+                </div>                
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center bg-light mt-3 shadow">
+            <div class="col-md-12 text-center text-muted mt-2">
+                <p>Copyright &copy; 2020 by <a href="https://github.com/dewijoanne">Joanne</a> and <a href="https://github.com/hansenshlim">Hansen</a></p>
+            </div>
+        </div>
+	</div>
+	<%-include('../partials/footer')%>
+</body>
+</html>       
+=======
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login Page</title>
+    <h1>Login</h1>
+</head>
+
+<body>
+    <a href="/register">register</a>
+    <form action="/user" method="POST">
+        <label for="username">Username</label><br>
+        <input type="text" name="username" id="username" value=""><br>
+        <label for="password">Password</label><br>
+        <input type="text" name="password" id="password" value="">
+        <br>
+        <br>
+        <button type="submit" value="save">login</button>
+    </form>
+</body>
+
+</html>
+>>>>>>> 7a4bd19b6b14e5afe671ed34eedb16da0851cbe9
