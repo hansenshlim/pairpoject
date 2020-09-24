@@ -1,17 +1,37 @@
 {
+<<<<<<< HEAD
   "name": "socialapp-finalproject",
+=======
+  "name": "pairpoject",
+>>>>>>> 7a4bd19b6b14e5afe671ed34eedb16da0851cbe9
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
+<<<<<<< HEAD
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
+=======
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hansenshlim/pairpoject.git"
+>>>>>>> 7a4bd19b6b14e5afe671ed34eedb16da0851cbe9
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+<<<<<<< HEAD
   "dependencies": {
     "body-parser": "^1.19.0",
+=======
+  "bugs": {
+    "url": "https://github.com/hansenshlim/pairpoject/issues"
+  },
+  "homepage": "https://github.com/hansenshlim/pairpoject#readme",
+  "dependencies": {
+>>>>>>> 7a4bd19b6b14e5afe671ed34eedb16da0851cbe9
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
@@ -23,4 +43,8 @@
     "nodemon": "^2.0.4",
     "sequelize-cli": "^6.2.0"
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 7a4bd19b6b14e5afe671ed34eedb16da0851cbe9
