@@ -1,6 +1,6 @@
 'use strict'
 
-const {Tag, Feed} = require('../models/index')
+const { Tag, Feed } = require('../models/index')
 
 class TagController {
     static showAllTags(req, res) {
@@ -18,7 +18,7 @@ class TagController {
                     });
                 });
                 // res.send(tagsData);
-                res.render('tags/list', {tagsData, fullName});
+                res.render('tags/list', { tagsData, fullName });
             }).catch((err) => {
                 res.send(err);
             });
