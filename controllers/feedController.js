@@ -310,6 +310,9 @@ class FeedController {
                 res.send(err)
             })
     }
+    static somethingIsnotRight() {
+
+    }
 }
 
 module.exports = FeedController
